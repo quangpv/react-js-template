@@ -1,4 +1,4 @@
-import {createScope, useScope} from "../lib/scope";
+import {createScope, useScope} from "../helper/scope";
 import {useNavigate} from "react-router-dom";
 
 export const RegisterScope = createScope({name: ''})

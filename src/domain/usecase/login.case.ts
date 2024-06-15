@@ -1,4 +1,4 @@
-import {createScope, useScope} from "../lib/scope";
+import {createScope, useScope} from "../helper/scope";
 import {useLocation, useNavigate} from "react-router-dom";
 import {AppScope} from "./app.case";
 import {useEffect} from "react";

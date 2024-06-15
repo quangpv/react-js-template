@@ -1,7 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {withScope} from "./lib/scope";
-import {AppScope, useUpdateAppOnLifecycleEvents} from "./domain/app.case";
+import {withScope} from "./domain/helper/scope";
+import {AppScope, useUpdateAppOnLifecycleEvents} from "./domain/usecase/app.case";
 import {MainPage} from "./presentation/MainPage";
 import ErrorPage from "./presentation/ErrorPage";
 import RegisterPage from "./presentation/RegisterPage";

@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from "react";
-import {useScope, withScope} from "../lib/scope";
-import {RegisterScope, useRegister} from "../domain/register.case";
+import {useScope, withScope} from "../domain/helper/scope";
+import {RegisterScope, useRegister} from "../domain/usecase/register.case";
 
 function RegisterPage() {
     const [, setState] = useScope(RegisterScope)

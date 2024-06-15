@@ -1,4 +1,4 @@
-import {createScope} from "../lib/scope";
+import {createScope} from "../helper/scope";
 
 export const HomeScope = createScope(() => ({
     title: ""

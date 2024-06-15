@@ -1,13 +1,17 @@
-import React, {createContext, Dispatch, SetStateAction, useContext, useMemo, useState} from "react";
+import React, {createContext, Dispatch, SetStateAction, useContext, useEffect, useMemo, useState} from "react";
 
 type ContextType<T, V> = [T, Dispatch<SetStateAction<T>>, V]
 type DefaultValue<T> = T | (() => T)
 type Deps<T> = () => T
 
+export interface Closable {
+    close(): void
+}
+
 interface Scope<T, V> {
     Context: React.Context<ContextType<T, V>>
     defaultValue: DefaultValue<T>
-    deps: Deps<V>
+    deps?: Deps<V>
 }
 
 export function createScope<T, V>(
@@ -33,9 +37,25 @@ export function withScope<T, V>(
     scope: Scope<T, V>,
     Page: React.FC,
 ): React.FC {
+    if (!scope.deps) {
+        return (params: any) => {
+            const [state, setState] = useState(scope.defaultValue)
+            return <scope.Context.Provider value={[state, setState, {} as V]}>
+                <Page {...params}/>
+            </scope.Context.Provider>
+        }
+    }
     return (params: any) => {
         const [state, setState] = useState(scope.defaultValue)
-        const deps = useMemo(() => scope.deps(), [])
+        const deps = useMemo(() => scope.deps!(), [])
+
+        useEffect(() => {
+            return () => {
+                if (deps instanceof Object) Object.values(deps).forEach(it => {
+                    (it as Closable)?.close();
+                });
+            }
+        }, [deps])
         return <scope.Context.Provider value={[state, setState, deps]}>
             <Page {...params}/>
         </scope.Context.Provider>

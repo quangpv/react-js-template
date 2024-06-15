@@ -1,11 +1,11 @@
-import {createScope, useScope} from "../lib/scope";
+import {createScope, useScope} from "../helper/scope";
 import {useEffect} from "react";
-import {serviceContext} from "../serviceContext";
-import {Repository} from "../data/repository";
+import {lookup} from "../../serviceProvider";
+import {Repository} from "../../data/repository";
 import {useNavigate} from "react-router-dom";
 
 export const AppScope = createScope({},
-    () => ({repository: serviceContext.get(Repository)}))
+    () => ({repository: lookup(Repository)}))
 
 export function useLogout() {
     const [, , {repository}] = useScope(AppScope)
@@ -17,7 +17,7 @@ export function useLogout() {
 }
 
 export function useUpdateAppOnLifecycleEvents() {
-    useCheckAuthOnMounted()
+    // useCheckAuthOnMounted()
 }
 
 function useCheckAuthOnMounted() {

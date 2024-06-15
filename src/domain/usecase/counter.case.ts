@@ -1,8 +1,10 @@
-import {createScope, useScope} from "../lib/scope";
+import {createScope, useScope} from "../helper/scope";
 import {useCallback, useEffect} from "react";
 import {AppScope} from "./app.case";
+import {lookup} from "../../serviceProvider";
+import {ApiService} from "../../data/apiService";
 
-export const CounterScope = createScope({count: 0})
+export const CounterScope = createScope({count: 0}, () => ({apiService: lookup(ApiService)}))
 
 export function useUpdateCountOnMounted() {
     const [, setState] = useScope(CounterScope)

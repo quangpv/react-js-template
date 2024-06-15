@@ -6,7 +6,7 @@ import {BottomNavigation, BottomNavigationAction} from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AddIcon from "@mui/icons-material/Add";
 import ErrorPage from "./ErrorPage";
-import {useNavigateToTab, useSelectedTab} from "../domain/main.case";
+import {useNavigateToTab, useSelectedTab} from "../domain/usecase/main.case";
 
 export function MainPage() {
     const navigateToTab = useNavigateToTab()

@@ -1,5 +1,5 @@
-import {useScope, withScope} from "../lib/scope";
-import {LoginScope, useLogin, useNavigateToRegister, useUpdateLoginOnMounted} from "../domain/login.case";
+import {useScope, withScope} from "../domain/helper/scope";
+import {LoginScope, useLogin, useNavigateToRegister, useUpdateLoginOnMounted} from "../domain/usecase/login.case";
 import React from "react";
 
 function LoginPage() {

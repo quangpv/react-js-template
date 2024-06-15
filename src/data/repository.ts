@@ -1,18 +1,24 @@
 import {ApiService} from "./apiService";
 import {LocalStore} from "./localStore";
+import {Closable} from "../domain/helper/scope";
 
-export class Repository {
+export class Repository implements Closable {
+    instanceId: string;
+    private latestCount: number = 0;
+
     constructor(
         private apiService: ApiService,
-        private localStore: LocalStore) {
+        private localStore: LocalStore
+    ) {
+        this.instanceId = Math.random().toString(36).slice(2);
     }
 
     getLatestCount() {
-        return this.localStore.getLatestCount()
+        return this.latestCount
     }
 
     setLatestCount(count: number) {
-        this.localStore.setLatestCount(count)
+        this.latestCount = count;
     }
 
     isLoggedIn(): boolean {
@@ -25,5 +31,9 @@ export class Repository {
 
     logout() {
         this.localStore.removeToken()
+    }
+
+    close(): void {
+        console.log("Close repo")
     }
 }

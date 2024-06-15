@@ -1,7 +1,7 @@
 import React from "react";
-import {withScope} from "../lib/scope";
-import {HomeScope} from "../domain/home.case";
-import {useLogout} from "../domain/app.case";
+import {withScope} from "../domain/helper/scope";
+import {HomeScope} from "../domain/usecase/home.case";
+import {useLogout} from "../domain/usecase/app.case";
 
 
 function HomePage() {

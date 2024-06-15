@@ -1,6 +1,6 @@
 import React from "react";
-import {useScope, withScope} from "../lib/scope";
-import {CounterScope, useAddCount, useReduceCount, useUpdateCountOnMounted} from "../domain/counter.case";
+import {useScope, withScope} from "../domain/helper/scope";
+import {CounterScope, useAddCount, useReduceCount, useUpdateCountOnMounted} from "../domain/usecase/counter.case";
 
 function CounterPage() {
     useUpdateCountOnMounted()
