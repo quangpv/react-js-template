@@ -1,11 +1,11 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {withScope} from "./domain/helper/scope";
-import {AppScope, useUpdateAppOnLifecycleEvents} from "./domain/usecase/app.case";
-import {MainPage} from "./presentation/MainPage";
-import ErrorPage from "./presentation/ErrorPage";
-import RegisterPage from "./presentation/RegisterPage";
-import LoginPage from "./presentation/LoginPage";
+import {withScope} from "../domain/helper/scope";
+import {AppScope, useUpdateAppOnLifecycleEvents} from "../domain/usecase/app.case";
+import {MainPage} from "./MainPage";
+import ErrorPage from "./ErrorPage";
+import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 
 
 function AppRoutes() {
