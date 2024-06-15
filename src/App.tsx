@@ -1,26 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {withScope} from "./lib/scope";
+import {AppScope, useUpdateAppOnLifecycleEvents} from "./domain/app.case";
+import {MainPage} from "./presentation/MainPage";
+import ErrorPage from "./presentation/ErrorPage";
+import RegisterPage from "./presentation/RegisterPage";
+import LoginPage from "./presentation/LoginPage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+function AppRoutes() {
+    useUpdateAppOnLifecycleEvents()
+
+    return <Routes>
+        <Route path="/login" Component={LoginPage}/>
+        <Route path="/register" Component={RegisterPage}/>
+        <Route path="/*" Component={MainPage}/>
+        <Route path="*" Component={ErrorPage}/>
+    </Routes>
 }
 
-export default App;
+function App() {
+    return (
+        <Router>
+            <AppRoutes/>
+        </Router>
+    );
+}
+
+export default withScope(AppScope, App);
